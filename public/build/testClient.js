@@ -1,13 +1,21 @@
-var WebSocket = require('ws')
-var ws = new WebSocket('ws://www.localhost.com/lobby')
+var ws = new WebSocket('ws://www.localhost:8080')
 
-function testClientPlease() {
-  console.log("this is working")
-}
+// Connection opened
+ws.addEventListener('open', (event) => {
+    ws.send('Hello Server!');
+});
 
-ws.on('open', function() {
-    ws.send('something')
-})
-ws.on('message', function(message) {
-    console.log('received: %s', message)
-})
+// Listen for messages
+ws.addEventListener('message', (event) => {
+    console.log('R:', event.data);
+});
+
+// Connection closed
+ws.addEventListener('close', (event) => {
+    ws.send('Hello Server!');
+});
+
+// Connection closed
+ws.addEventListener('error', (event) => {
+    ws.send('Websocket error: ', event.data);
+});
