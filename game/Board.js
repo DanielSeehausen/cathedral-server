@@ -31,9 +31,7 @@ class Board {
   }
 
   movesAreValid(positions) {
-    console.log(this.board)
     for (let posIdx = 0; posIdx < positions.length; posIdx++) {
-      console.log(`\nchecking: ${positions[posIdx]}`)
       if (this.posOutOfBounds(positions[posIdx]) || this.posOccupied(positions[posIdx]))
         return false
     }
@@ -60,7 +58,7 @@ class Board {
   }
 
   toString() {
-    return this.board.reduce((acc, row) => (acc + row.toString() + "\n"), "")
+    return this.board.reduce((acc, row) => (acc + row + "\n"), "")
   }
 
 }
