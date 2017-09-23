@@ -8,6 +8,7 @@ function chat(game, player, chatStr) {
 
 function swapPlayer(game) {
   game.swapPlayer()
+  return game.toJSONReadyObj()
 }
 
 function move(game, player, blockCoordinates) {
@@ -16,7 +17,6 @@ function move(game, player, blockCoordinates) {
   let success = game.playerMove(player.id, blockCoordinates)
   return (success) ? game.toJSONReadyObj() : `${player.id} tried to move, but it was found invalid!`
 }
-
 
 const dispatch = {
   'move': move,
