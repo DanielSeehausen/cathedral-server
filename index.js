@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/lobby', (req, res) => {
-  res.send("poop went to /lobby")
+  res.sendFile(root + '/build/testClient.js')
 })
 
 // routes for all the 404 pages assets, including stylesheet

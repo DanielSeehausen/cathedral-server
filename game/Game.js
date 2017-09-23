@@ -1,6 +1,6 @@
 const Board = require('./Board.js')
 
-var pendingGame = false
+pendingGame = false
 
 class Game {
 
@@ -10,6 +10,7 @@ class Game {
     this.p2 = null
     this.board = new Board()
     pendingGame = this
+    this.activePlayer = player
   }
 
   _playerJoin(player) {
@@ -21,17 +22,31 @@ class Game {
   static joinOrCreateGame(player) {
     if (pendingGame) {
       let game = pendingGame._playerJoin(player)
-      let pendingGame = false
+      pendingGame = false
       return game
     }
+    console.log("\nmaking a new game...")
     return new Game(player)
+  }
+
+  swapPlayer() {
+    (this.p1 === this.activePlayer) ? (this.activePlayer = this.p2) : (this.activePlayer = this.p1) // JANK NOTTEEIGH dont be TELLING ME ASSIGNMENT IN A TERNARY IS INAPPROPRIATE THERER ARE NO REACT WARNINGS TO SAVE YOU DAHLNODE
+    console.log(`NEW ACTIVE PLAYER: ${this.activePlayer}`)
+  }
+
+  playerMove(playerID, blockCoordinates) {
+    let success = this.board.playerMove(playerID, blockCoordinates)
+    if (success)
+      this.swapPlayer()
+    return success
   }
 
   toJSONReadyObj() {
     let gameObj = {}
-    gameObj['activePlayer'] = false // will be turned to true only for the active player
-    gameObj['players'] = [this.p1.toJSONReadyObj(), this.p2.toJSONReadyObj()]
-    gameObj['board'] = this.board.toJSONReadyObj()
+    gameObj.activePlayer = this.activePlayer
+    gameObj.players = [this.p1.toJSONReadyObj(), this.p2.toJSONReadyObj()]
+    gameObj.board = this.board.toJSONReadyObj()
+    return gameObj
   }
 
   toString() {

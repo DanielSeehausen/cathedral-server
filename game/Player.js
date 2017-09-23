@@ -10,7 +10,7 @@ class Player {
   }
 
   toJSONReadyObj() {
-    return { 'id': [this.id, this.ip] }
+    return { id: [this.id, this.ip] }
   }
 
   toString() {
