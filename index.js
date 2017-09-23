@@ -3,27 +3,30 @@ var path = require('path')
 const app = express()
 require('./wsocket/index.js')
 
-// app.use(express.static('public'))
-
 const root = __dirname + '/public/'
-console.log(root)
+
+// some middleware for logging the knotty bad
+app.use(function(req, res, next) {
+  console.log(req.connection.remoteAddress + " requesting: " + req.originalUrl)
+  next()
+})
+
+// root bebeeh
+app.get('/', (req, res) => {
+  res.sendFile(root + 'index.html')
+})
 
 app.get('/lobby', (req, res) => {
   res.send("poop went to /lobby")
 })
 
-app.get('/', (req, res) => {
-  console.log('attempting to send public/index.html')
-  res.sendFile(root + 'index.html')
-})
-
+// routes for all the 404 pages assets, including stylesheet
 app.get('/404/:file', (req, res) => {
-  console.log('attempting to send public/index.html')
-  res.sendFile(root + '/404/' + file)
+  res.sendFile(root + '/404/' + req.params.file)
 })
 
+// catch all sends them suckas two bernard u no it m8
 app.get('*', (req, res) => {
-  console.log('attempting to send public/four-oh-four/index.html')
   res.sendFile(root + '/404/index.html')
 })
 

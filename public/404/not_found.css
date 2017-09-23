@@ -27,7 +27,7 @@ div {
     top:-5%;
     width:117%;
     height:113%;
-    background: url("404/404_arnold.jpg") no-repeat center center;
+    background: url("http://localhost:3000/404/404_arnold.jpg") no-repeat center center;
     background-size: 100%;
 
     animation: fadeIn 5s forwards, moveBernard 40s ease-out forwards;
@@ -36,7 +36,7 @@ div {
 #doesnt-look-wrapper {
     top: 3%;
     left: 2%;
-    background: url("404/images/doesnt-look.png") no-repeat;
+    background: url("http://localhost:3000/404/doesnt-look.png") no-repeat;
     animation: fadeIn 7s forwards, moveTextRight 5s ease-out forwards;
     animation-delay: 1.5s;
 }
@@ -44,7 +44,7 @@ div {
 #like-wrapper {
     top: 17%;
     left: 27%;
-    background: url("404/images/like.png") no-repeat;
+    background: url("http://localhost:3000/404/like.png") no-repeat;
     animation: fadeIn 7s forwards, moveTextLeft 5s ease-out forwards;
     animation-delay: 2s;
 
@@ -53,7 +53,7 @@ div {
 #anything-at-all-wrapper {
     top: 9%;
     left: -10%;
-    background: url("404/images/anything-at-all.png") no-repeat;
+    background: url("http://localhost:3000/404/anything-at-all.png") no-repeat;
     animation: fadeIn 7s forwards, moveTextRight 5s ease-out forwards;
     animation-delay: 2.5s;
 
@@ -62,7 +62,7 @@ div {
 #to-me-wrapper {
     top: 38%;
     left: 18%;
-    background: url("404/images/to-me.png") no-repeat;
+    background: url("http://localhost:3000/404/to-me.png") no-repeat;
     animation: fadeIn 7s forwards, moveTextLeft 5s ease-out forwards;
     animation-delay: 3.2s;
 }
@@ -70,7 +70,7 @@ div {
 #four-oh-four-wrapper {
     top: 55%;
     left: -3%;
-    background: url("404/images/404.png") no-repeat;
+    background: url("http://localhost:3000/404/404.png") no-repeat;
     animation: fadeIn 7s forwards, moveTextUp 5s ease-out forwards;
     animation-delay: 4.5s;
 }
