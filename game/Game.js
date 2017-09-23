@@ -7,6 +7,7 @@ class Game {
   constructor(player) {
     this.p1 = player
     this.p1.assignID(1)
+    this.p2 = null
     this.board = new Board()
     pendingGame = this
   }
@@ -17,9 +18,20 @@ class Game {
     return this
   }
 
-
   static joinOrCreateGame(player) {
-    return (pendingGame) ? pendingGame._playerJoin(player) : new Game(player)
+    if (pendingGame) {
+      let game = pendingGame._playerJoin(player)
+      let pendingGame = false
+      return game
+    }
+    return new Game(player)
+  }
+
+  toJSONReadyObj() {
+    let gameObj = {}
+    gameObj['activePlayer'] = false // will be turned to true only for the active player
+    gameObj['players'] = [this.p1.toJSONReadyObj(), this.p2.toJSONReadyObj()]
+    gameObj['board'] = this.board.toJSONReadyObj()
   }
 
   toString() {

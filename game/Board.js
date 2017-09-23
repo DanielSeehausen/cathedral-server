@@ -17,6 +17,11 @@ class Board {
 
   constructor() {
     this.board = getDefaultBoard()
+    this.currPlayer = null
+  }
+
+  toJSONReadyObj() {
+    return this.board.reduce((acc, row, idx) => (acc[idx] = row), {})
   }
 
   toString() {

@@ -9,6 +9,10 @@ class Player {
     (id === 1 || id === 2) && (this.id = id) // yEUH! Budday heer we go jankmasta
   }
 
+  toJSONReadyObj() {
+    return { 'id': [this.id, this.ip] }
+  }
+
   toString() {
     return `Player IP: ${this.ip}\nPlayer ID: ${this.id}`
   }
