@@ -1,5 +1,5 @@
 
-#SERVER
+# SERVER
 
 ## SERVER GAME MGMT
   - assert check for game over after every move (player out of pieces)
@@ -23,3 +23,5 @@
 ## GENERAL
   - should merge bundle with server so rest of routing can be finished
   - get DO droplet or use chouxbe.us if they havent banned me for life for some basic deployment testing? or just get new domain?
+
+# CLIENT
