@@ -7,7 +7,7 @@ const GREETING = {
 
 // Connection opened
 ws.addEventListener('open', (event) => {
-  ws.send(JSON.stringify(GREETING))
+  // ws.send(JSON.stringify(GREETING))
 });
 
 // Listen for messages
@@ -25,18 +25,42 @@ ws.addEventListener('error', (event) => {
   ws.send('Websocket error: ', event.data)
 });
 
-function testMove(coordinates) {
-  const msg = {
-    "action": "move",
-    "payload": coordinates
-  }
-  ws.send(JSON.stringify(msg))
+function pack(action, msg) {
+  msg["action"] = action
+  return JSON.stringify(msg)
 }
 
-function testPass(JSON) {
+function testMove(blockCoords) {
+  const msg = {
+    "blockCoords": blockCoords
+  }
+  ws.send(pack("move", msg))
+}
+
+function testPass() {
   const msg = {
     "action": "pass",
-    "payload": "passing"
   }
-  ws.send(JSON.stringify(msg));
+  ws.send(pack("pass", msg))
+}
+
+function testChat(chat) {
+  const msg = {
+    "chatStr": chat,
+  }
+  ws.send(pack("chat", msg))
+}
+
+function testQuit(chat) {
+  const msg = {
+    "placeholder": true,
+  }
+  ws.send(pack("quit", msg))
+}
+
+function runTest() {
+  setTimeout(() => testChat("this is a test chat string from test file"), 1000)
+  setTimeout(() => testMove([[0, 0], [0, 1], [1, 1]]), 2000)
+  setTimeout(() => testPass([[0, 0], [0, 1], [1, 1]]), 3000)
+  setTimeout(() => testQuit([[0, 0], [0, 1], [1, 1]]), 4000)
 }

@@ -25,7 +25,7 @@ class Piece {
 
   static getAllPieces(player) {
     let pieces = []
-    for (var [name, jaunts] of Object.entries(PIECE_DICT)) {
+    for (var [name, jaunts] of Object.entries(PIECE_DICT))
       pieces.push(new Piece(player, name, jaunts))
     return pieces
   }

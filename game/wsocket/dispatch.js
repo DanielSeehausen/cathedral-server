@@ -1,9 +1,9 @@
 const digestMsg = require('./msgDigester')
 
-const move = require('../move.js')
-const chat = require('../chat.js')
-const pass = require('../pass.js')
-const quit = require('../quit.js')
+const move = require('../actions/move.js')
+const chat = require('../actions/chat.js')
+const pass = require('../actions/pass.js')
+const quit = require('../actions/quit.js')
 
 
 const DISPATCH_DICT = {

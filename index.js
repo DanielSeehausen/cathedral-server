@@ -18,6 +18,12 @@ app.get('/', (req, res) => {
 
 // opens websocket connection and looks to join/create a game
 app.get('/lobby', (req, res) => {
+  res.sendFile(root + 'index.html')
+})
+
+// opens websocket connection and looks to join/create a game
+app.get('/client-tester', (req, res) => {
+  console.log('s')
   res.sendFile(root + '/build/testClient.js')
 })
 

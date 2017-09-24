@@ -1,6 +1,6 @@
 function pass(game, player) {
   game.swapPlayer()
-  return return {
+  return {
     playerID: player.id
   }
 }

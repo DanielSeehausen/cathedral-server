@@ -22,7 +22,9 @@ class Game {
   }
 
   emit(msg) {
-    [this.p1, this.p2].forEach(player => (player.ws.send(msg))
+    // console.log(this.p1)
+    // console.log(this.p2)
+    [this.p1, this.p2].forEach(player => player.ws.send(msg))
   }
 
   _playerJoin(player) {
