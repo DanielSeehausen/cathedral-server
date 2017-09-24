@@ -1,8 +1,16 @@
+const Piece = require('./Piece.js')
+
 class Player {
 
-  constructor(ip) {
+  constructor(ip, ws) {
     this.ip = ip
-    this.id = null // if toString called before ID assigned
+    this.ws = ws
+    this.id = null // if toString called before ID assigned. Second player to join always receives 2, first gets 1
+    this.pieces = null
+  }
+
+  assignPieces() {
+    this.pieces = Piece.getAllPieces(player)
   }
 
   assignID(id) {
@@ -14,7 +22,7 @@ class Player {
   }
 
   toString() {
-    return `Player IP: ${this.ip}\nPlayer ID: ${this.id}`
+    return `Player IP: ${this.ip}\tPlayer ID: ${this.id}\nPieces: ${this.pieces}`
   }
 
 }

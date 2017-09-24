@@ -1,11 +1,11 @@
 const express = require('express')
 var path = require('path')
 const app = express()
-require('./wsocket/index.js')
+require('./game/wsocket/index.js')
 
-const root = __dirname + '/public/'
+const root = __dirname + '/public/' // yoo no it
 
-// some middleware for logging the knotty bad
+// some middleware for logging the knotty bad asset requests
 app.use(function(req, res, next) {
   console.log(req.connection.remoteAddress + " requesting: " + req.originalUrl)
   next()
@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
   res.sendFile(root + 'index.html')
 })
 
+// opens websocket connection and looks to join/create a game
 app.get('/lobby', (req, res) => {
   res.sendFile(root + '/build/testClient.js')
 })

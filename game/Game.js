@@ -13,6 +13,18 @@ class Game {
     this.activePlayer = player
   }
 
+  assignPieces() {
+    [this.p1, this.p2].forEach(player => player.assignPieces())
+  }
+
+  startGame() {
+    this.assignPieces()
+  }
+
+  emit(msg) {
+    [this.p1, this.p2].forEach(player => (player.ws.send(msg))
+  }
+
   _playerJoin(player) {
     this.p2 = player
     this.p2.assignID(2)
@@ -25,13 +37,12 @@ class Game {
       pendingGame = false
       return game
     }
-    console.log("\nmaking a new game...")
-    return new Game(player)
+    let newGame = new Game(player)
+    return newGame
   }
 
   swapPlayer() {
     (this.p1 === this.activePlayer) ? (this.activePlayer = this.p2) : (this.activePlayer = this.p1) // JANK NOTTEEIGH dont be TELLING ME ASSIGNMENT IN A TERNARY IS INAPPROPRIATE THERER ARE NO REACT WARNINGS TO SAVE YOU DAHLNODE
-    console.log(`NEW ACTIVE PLAYER: ${this.activePlayer}`)
   }
 
   playerMove(playerID, blockCoordinates) {

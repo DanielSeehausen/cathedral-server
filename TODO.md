@@ -7,6 +7,7 @@
   - later, manage 'player can not move anymore' with any remaining pieces and available positions on board (must make nice nice so it is not taxing)
   - players need to have 'pieces' added/make PIECE class
   - implement scoring
+  - fix how new games are spawned to be not withon the Game class file -- that is JANK! new object game spawner? or happen at dispatch level? ples.
 
 ## WEBSOCKET COMMUNICATION
   - Messages need to be emitted to BOTH players -- player needs pointer to its WSS object
