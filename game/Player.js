@@ -9,8 +9,19 @@ class Player {
     this.pieces = null
   }
 
+  // to assert that player's aren't spoofing messages and playing pieces they don't have
+  playPiece(pieceName) {
+    for (var idx = 0; idx < this.pieces.length; idx++) {
+      if (this.pieces.name === pieceName) {
+        this.pieces.splice(idx, 1)
+        return true
+      }
+    }
+    throw `ERROR:\nPlayer: ${this.player}\n...tried to play...\nPiece: ${pieceName}\n...but it was not found...\nPlayer Piece Array: ${this.pieces}`
+  }
+
   assignPieces() {
-    this.pieces = Piece.getAllPieces(player)
+    this.pieces = Piece.getAllPieces(this)
   }
 
   assignID(id) {

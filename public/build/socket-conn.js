@@ -1,6 +1,7 @@
 const dispatch = require('./dispatch.js')
 const unpack = require('./ws-msg-unpacker.js')
 const ws = new WebSocket('ws://www.localhost:8080')
+const testGame = require('./testClient.js')
 
 // Connection opened
 ws.addEventListener('open', (event) => {
@@ -26,3 +27,7 @@ ws.addEventListener('close', (event) => {
 ws.addEventListener('error', (event) => {
   ws.send('Websocket error: ', event.data)
 })
+
+function runTest() {
+  testGame(ws)
+}

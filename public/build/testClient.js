@@ -1,66 +1,34 @@
-var ws = new WebSocket('ws://www.localhost:8080')
+const digestMsg = require('./ws-msg-unpacker.js')
+const testGame1 = require('./testGames/testGame1.js')
 
-const GREETING = {
-  "action": "chat",
-  "payload": "this is a chat message from the client"
+var lastResp = null
+
+function assert(actualResponse, expectedResponse) {
+  console.log(actualResponse)
+  console.log('********************************')
+  console.log(expectedResponse)
 }
 
-// Connection opened
-ws.addEventListener('open', (event) => {
-  // ws.send(JSON.stringify(GREETING))
-});
-
-// Listen for messages
-ws.addEventListener('message', (event) => {
-  console.log(event.data)
-});
-
-// Connection closed
-ws.addEventListener('close', (event) => {
-  ws.send('ws on close client fired!!')
-});
-
-// Connection closed
-ws.addEventListener('error', (event) => {
-  ws.send('Websocket error: ', event.data)
-});
-
-function pack(action, msg) {
-  msg["action"] = action
-  return JSON.stringify(msg)
+function debugTest(testGame, ws) {
+  let currMsgIdx = 0
+  let expectedResp = null
+  setInterval(() => {
+    if (lastResp) {
+      assert(lastResp, expectedResponse)
+      debugger
+    }
+    expectedResponse = testGame.expectedResponses[currMsgIdx]
+    ws.send(testGame.messages[currMsgIdx])
+    currMsgIdx++
+  }, 1000)
 }
 
-function testMove(blockCoords) {
-  const msg = {
-    "blockCoords": blockCoords
-  }
-  ws.send(pack("move", msg))
+function main(ws) {
+  ws.addEventListener('message', (event) => {
+    const lastResp = digestMsg('unpack', event.data)
+    console.log("Server response: ", lastResp)
+  })
+  debugTest(testGame1, ws)
 }
 
-function testPass() {
-  const msg = {
-    "action": "pass",
-  }
-  ws.send(pack("pass", msg))
-}
-
-function testChat(chat) {
-  const msg = {
-    "chatStr": chat,
-  }
-  ws.send(pack("chat", msg))
-}
-
-function testQuit(chat) {
-  const msg = {
-    "placeholder": true,
-  }
-  ws.send(pack("quit", msg))
-}
-
-function runTest() {
-  setTimeout(() => testChat("this is a test chat string from test file"), 1000)
-  setTimeout(() => testMove([[0, 0], [0, 1], [1, 1]]), 2000)
-  setTimeout(() => testPass([[0, 0], [0, 1], [1, 1]]), 3000)
-  setTimeout(() => testQuit([[0, 0], [0, 1], [1, 1]]), 4000)
-}
+module.exports = main

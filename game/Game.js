@@ -47,10 +47,11 @@ class Game {
     (this.p1 === this.activePlayer) ? (this.activePlayer = this.p2) : (this.activePlayer = this.p1) // JANK NOTTEEIGH dont be TELLING ME ASSIGNMENT IN A TERNARY IS INAPPROPRIATE THERER ARE NO REACT WARNINGS TO SAVE YOU DAHLNODE
   }
 
-  playerMove(playerID, blockCoordinates) {
-    let success = this.board.playerMove(playerID, blockCoordinates)
-    if (success)
-      this.swapPlayer()
+  playerMove(playerID, pieceName, blockCoords) {
+    let player = (this.p1.id === playerID) ? this.p1 : this.p2
+    // success occurs when the player both has the piece to play and the board is free to play the piece
+    let success = (player.playPiece(pieceName) && this.board.playerMove(playerID, pieceName, blockCoords)) // these should really be one, but I don't have a good board/player heirarchy in place atm
+    success && this.swapPlayer() // Jeff Goldblumjank is best jank!
     return success
   }
 
