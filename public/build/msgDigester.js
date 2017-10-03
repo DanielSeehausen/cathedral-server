@@ -3,7 +3,6 @@ function unpack(msg) {
 }
 
 function pack(msg, action) {
-  // TODO add timestamp to response
   msg["action"] = action
   return JSON.stringify(msg)
 }

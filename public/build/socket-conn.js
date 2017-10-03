@@ -3,31 +3,27 @@ const unpack = require('./ws-msg-unpacker.js')
 const ws = new WebSocket('ws://www.localhost:8080')
 const testGame = require('./testClient.js')
 
+const GREETING = "Client websocket opened: "
+const FAREWELL = "Client websocket closed: "
+const ERROR = "Client websocket errored: "
+
 // Connection opened
 ws.addEventListener('open', (event) => {
-  // ws.send(JSON.stringify(GREETING))
+  console.log(GREETING, event.data)
 })
 
 // Listen for messages
 ws.addEventListener('message', (event) => {
-  /* 1. Websocket communication comes from server
-   * 2. Unpacker converts to format for consumption on client
-   * 3. Dispatch sends message to appropriate place
-  */
   const msg = unpack(event.data)
   dispatch(msg)
 })
 
 // Connection closed
 ws.addEventListener('close', (event) => {
-  ws.send('ws on close client fired!!')
+  console.log(FAREWELL, event.data)
 })
 
-// Connection closed
+// Connection errored
 ws.addEventListener('error', (event) => {
-  ws.send('Websocket error: ', event.data)
+  console.error(ERROR, event.data)
 })
-
-function runTest() {
-  testGame(ws)
-}

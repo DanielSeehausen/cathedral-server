@@ -1,36 +1,23 @@
-module.exports = {
-  player1: {
-    msgAndResp: [
-      {
-        action: "move",
-        blockCoords: [[0, 0], [0, 1], [0, 2]],
-        pieceName: "road"
-      }
+const ws1Sends = testGame.sends.ws1
+const ws2Sends = testGame.sends.ws2
+const ws1Receives = testGame.receives.ws1
+const ws2Receives = testGame.receives.ws2
+
+const game = {
+  sends: {
+    ws1: [
+      {},
     ],
-    expectedResponses: [
-      {
-        poop: "this is the expected response..."
-      },
-    ]
+    ws2: [
+      {},
+    ],
+  },
+  receives: {
+    ws1: [
+      {},
+    ],
+    ws2: [
+      {},
+    ],
   }
-  // player2: {
-  //   msgAndResp: [
-  //     {
-  //       action: "move",
-  //       blockCoords: [[0, 0], [0, 1], [0, 2]],
-  //       pieceName: "road"
-  //     },
-  //     {
-  //       action: "move",
-  //       blockCoords: [[0, 0], [0, 1], [0, 2]],
-  //       pieceName: "road"
-  //     },
-  //     {},
-  //   ],
-  //   expectedResponses: [
-  //     {},
-  //     {},
-  //     {},
-  //   ]
-  // },
 }

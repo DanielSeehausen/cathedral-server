@@ -22,9 +22,8 @@ app.get('/lobby', (req, res) => {
 })
 
 // opens websocket connection and looks to join/create a game
-app.get('/client-tester', (req, res) => {
-  console.log('s')
-  res.sendFile(root + '/build/testClient.js')
+app.get('/test-client', (req, res) => {
+  res.sendFile(root + '/build/testGame1.js')
 })
 
 // routes for all the 404 pages assets, including stylesheet
