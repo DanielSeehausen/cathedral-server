@@ -1,4 +1,6 @@
 const PIECE_DICT = {
+  basilica:    [[0, 0],[0, -1],[-1, 0],[0, 1],[1, 0],[2, 0]],
+  
   house:       [[0, 0]],
   house2:      [[0, 0]],
   rowhouse:    [[0, 0], [1, 0]],
